@@ -10,13 +10,13 @@ SDL_GLContext gOpenGLContext = nullptr;
 
 bool gQuit = false; // If ture, we quit
 
-// void GetOpenGLVersionInfo() {
-//   std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
-//   std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
-//   std::cout << "Vendor: " << glGetString(GL_VERSION) << std::endl;
-//   std::cout << "Vendor: " << glGetString(GL_SHADING_LANGUAGE_VERSION)
-//             << std::endl;
-// }
+void GetOpenGLVersionInfo() {
+  std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
+  std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
+  std::cout << "Vendor: " << glGetString(GL_VERSION) << std::endl;
+  std::cout << "Vendor: " << glGetString(GL_SHADING_LANGUAGE_VERSION)
+            << std::endl;
+}
 
 void InitializeProgram() {
   std::cout << "About to initialize SDL..." << std::endl;
@@ -26,11 +26,11 @@ void InitializeProgram() {
   }
   std::cout << "SDL initialized." << std::endl;
 
-  //   GLenum err = glGetError();
-  //   while (err != GL_NO_ERROR) {
-  //     std::cout << "OpenGL error: " << err << std::endl;
-  //     err = glGetError();
-  //   }
+  GLenum err = glGetError();
+  while (err != GL_NO_ERROR) {
+    std::cout << "OpenGL error: " << err << std::endl;
+    err = glGetError();
+  }
 
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
@@ -63,12 +63,12 @@ void InitializeProgram() {
   }
   std::cout << "OpenGL context created." << std::endl;
 
-  // initialize the Glad Library
-  //   if (!gladLoadGLLoader(SDL_GL_GetProcAddress)) {
-  //     std::cout << "glad was not initialized" << std::endl;
-  //     exit(1);
-  //   }
-  //   std::cout << "GLAD initialized." << std::endl;
+  //   initialize the Glad Library
+  if (!gladLoadGLLoader(SDL_GL_GetProcAddress)) {
+    std::cout << "glad was not initialized" << std::endl;
+    exit(1);
+  }
+  std::cout << "GLAD initialized." << std::endl;
 
   //   GetOpenGLVersionInfo();
 }
@@ -109,11 +109,11 @@ void CleanUp() {
 int main(int argc, char *argv[]) {
   std::cout << "Starting program..." << std::endl;
 
-  //   InitializeProgram();
+  InitializeProgram();
 
-  //   MainLoop();
+  MainLoop();
 
-  //   CleanUp();
+  CleanUp();
 
   return 0;
 }
