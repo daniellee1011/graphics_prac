@@ -101,13 +101,21 @@ void VertexSpecification() {
 
   // Lives on the CPU
   const std::vector<GLfloat> vertexData{
-      // x y z
-      -0.8f, -0.8f, 0.0f, // Left vertex
-      1.0f,  0.0f,  0.0f, // colors
-      0.8f,  -0.8f, 0.0f, // Right vertex
-      0.0f,  1.0f,  0.0f, // colors
-      0.0f,  0.8f,  0.0f, // Top vertex
-      0.0f,  0.0f,  1.0f  // colors
+      // First Triangle
+      -0.5f, -0.5f, 0.0f, // Left vertex
+      1.0f, 0.0f, 0.0f,   // colors
+      0.5f, -0.5f, 0.0f,  // Right vertex
+      0.0f, 1.0f, 0.0f,   // colors
+      -0.5f, 0.5f, 0.0f,  // Top vertex
+      0.0f, 0.0f, 1.0f,   // colors
+
+      // Second Triangle
+      0.5f, -0.5f, 0.0f, // Left vertex
+      1.0f, 0.0f, 0.0f,  // colors
+      0.5f, 0.5f, 0.0f,  // Right vertex
+      0.0f, 1.0f, 0.0f,  // colors
+      -0.5f, 0.5f, 0.0f, // Top vertex
+      0.0f, 0.0f, 1.0f   // colors
   };
 
   // We start setting things up on the GPU
@@ -202,7 +210,7 @@ void Draw() {
   glBindVertexArray(gVertexArrayObject);
   glBindBuffer(GL_ARRAY_BUFFER, gVertexBufferObject);
 
-  glDrawArrays(GL_TRIANGLES, 0, 3);
+  glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 void MainLoop() {
