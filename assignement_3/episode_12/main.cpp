@@ -20,6 +20,25 @@ SDL_GLContext gOpenGLContext = nullptr;
 
 bool gQuit = false;
 
+// Error Handling Routines
+static void GLClearAllErrors() {
+  while (glGetError() != GL_NO_ERROR) {
+  }
+}
+// Returns true if we can have an error
+static bool GLCheckErrorStatus(const char *function, int line) {
+  while (GLenum error = glGetError()) {
+    std::cout << "OpenGL Error: " << error << "\tLine: " << line
+              << "\tfunction: " << function << std::endl;
+    return true;
+  }
+  return false;
+}
+#define GLCheck(x)                                                             \
+  GLClearAllErrors();                                                          \
+  x;                                                                           \
+  GLCheckErrorStatus(#x, __LINE__);
+
 // VAO
 GLuint gVertexArrayObject = 0;
 
@@ -211,6 +230,7 @@ void Draw() {
   glBindBuffer(GL_ARRAY_BUFFER, gVertexBufferObject);
 
   glDrawArrays(GL_TRIANGLES, 0, 6);
+  // GLCheck(glDrawArrays(GL_TRIANGLES, 0, 6));
 }
 
 void MainLoop() {
